@@ -114,9 +114,9 @@ def upload():
     return response
 
 
-# this section is used by gunicorn to serve the app on Heroku
-if __name__ == '__main__':
-    app.run()
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
 # if __name__ == '__main__':  
 #     app.run(host='0.0.0.0', port=80)
     # uncomment this section to serve the app locally with gevent at:  http://localhost:5000
