@@ -13,6 +13,7 @@ from keras_preprocessing.image import img_to_array
 from flask import Flask, jsonify, send_from_directory, request
 from werkzeug.utils import secure_filename
 from flask_cors import CORS
+from flask_cors import cross_origin
 
 # Api key authentication module
 from modules import authenticateKey
