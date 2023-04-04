@@ -115,11 +115,11 @@ def upload():
     return response
 
 
-# if __name__ == "__main__":
-#     app.run()
+if __name__ == "__main__":
+    app.run()
 # if __name__ == '__main__':  
 #     app.run(host='0.0.0.0', port=80)
     # uncomment this section to serve the app locally with gevent at:  http://localhost:5000
     # Serve the app with gevent
-    http_server = WSGIServer(('', 5000), app)
-    http_server.serve_forever()
+    # http_server = WSGIServer(('', 5000), app)
+    # http_server.serve_forever()
