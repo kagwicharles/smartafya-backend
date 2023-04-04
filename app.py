@@ -6,7 +6,8 @@ import numpy as np
 
 # Keras
 from keras.models import load_model
-from keras.preprocessing import image
+from keras_preprocessing.image import load_img
+from keras_preprocessing.image import img_to_array
 
 # Flask utils
 from flask import Flask, jsonify, send_from_directory, request
@@ -33,8 +34,8 @@ print('Model loaded. Start serving...')
 
 
 def predictDisease(img_path, model):
-    image_to_predict = image.load_img(img_path, target_size=(130, 130, 3))
-    image_to_predict = image.img_to_array(image_to_predict)
+    image_to_predict = load_img(img_path, target_size=(130, 130, 3))
+    image_to_predict = img_to_array(image_to_predict)
     image_to_predict = np.expand_dims(image_to_predict, axis=0)
     preds = model.predict(image_to_predict)
     return preds
@@ -114,12 +115,11 @@ def upload():
     return response
 
 
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port)
+# if __name__ == "__main__":
+#     app.run()
 # if __name__ == '__main__':  
 #     app.run(host='0.0.0.0', port=80)
     # uncomment this section to serve the app locally with gevent at:  http://localhost:5000
     # Serve the app with gevent
-    # http_server = WSGIServer(('', 5000), app)
-    # http_server.serve_forever()
+    http_server = WSGIServer(('', 5000), app)
+    http_server.serve_forever()
