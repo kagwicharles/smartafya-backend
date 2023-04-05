@@ -13,7 +13,6 @@ from keras_preprocessing.image import img_to_array
 from flask import Flask, jsonify, send_from_directory, request
 from werkzeug.utils import secure_filename
 from flask_cors import CORS
-from flask_cors import cross_origin
 
 # Api key authentication module
 from modules import authenticateKey
@@ -21,7 +20,7 @@ from modules import authenticateKey
 # Define a flask app
 # app = Flask(__name__, static_folder='front-end/build', static_url_path='')
 app = Flask(__name__)
-cors = CORS(app, resources={r"/*": {"origins": "*"}})
+cors = CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
 
 # Model saved with Keras model.save()
 MALARIA_MODEL_PATH = 'models/Malaria/malaria_pred_cnn.h5'
