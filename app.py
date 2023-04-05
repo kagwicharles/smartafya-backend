@@ -20,7 +20,7 @@ from modules import authenticateKey
 # Define a flask app
 # app = Flask(__name__, static_folder='front-end/build', static_url_path='')
 app = Flask(__name__)
-cors = CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
+cors = CORS(app, resources={r"/*": {"origins": "https://api-smartafya.onrender.com"}})
 
 # Model saved with Keras model.save()
 MALARIA_MODEL_PATH = 'models/Malaria/malaria_pred_cnn.h5'
@@ -42,7 +42,6 @@ def predictDisease(img_path, model):
 
 
 @app.route("/", defaults={'path': ''})
-@cross_origin()
 def serve(path):
     return send_from_directory(app.static_folder, 'index.html')
 
@@ -53,7 +52,6 @@ def not_found(e):
 
 
 @app.route('/predict', methods=['GET', 'POST'])
-@cross_origin()
 def upload():
     if request.method == 'POST':
         # Get the file from post request
